@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC } from 'react';
 
-const App: FC = () => {
+import MainPage from './pages/MainPage/MainPage';
 
-   return (
-      <div></div>
-   );
-}
+const App: FC = () => (
+   <div>
+      <MainPage />
+   </div>
+);
 
 export default App;
