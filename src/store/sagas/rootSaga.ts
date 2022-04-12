@@ -1,9 +1,9 @@
 import { call, spawn, all } from "redux-saga/effects";
-import { watcherCoordinates } from './weatherSaga';
+import { watcherCoordinatesCity, watcherCoordinatesGeograph, watcherOpenWeatherApi, watcherWeatherBitApi } from './weatherSaga';
 
 export default function* rootSaga(): any {
 
-   const sagas = [watcherCoordinates]
+   const sagas = [watcherCoordinatesCity, watcherCoordinatesGeograph, watcherOpenWeatherApi, watcherWeatherBitApi]
 
    const retrySagas = yield sagas.map((saga) => {
       // если сага возвращает ошибку, то её вызывает еще раз.

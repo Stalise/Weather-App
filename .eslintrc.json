@@ -46,7 +46,7 @@
       "max-len": [
          "warn",
          {
-            "code": 150,
+            "code": 170,
             "ignoreUrls": true,
             "ignorePattern": "import"
          }
@@ -84,6 +84,9 @@
       "@typescript-eslint/no-unused-vars": "warn",
       "array-callback-return": "off",
       "consistent-return": "off",
+      "react/jsx-wrap-multilines": "off",
+      "react/jsx-curly-newline": "off",
+      "no-trailing-spaces": "off",
       "react/jsx-filename-extension": [
          2,
          {

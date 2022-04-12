@@ -1,5 +1,13 @@
 import { WeatherActionsConstants } from '../store/reducers/weatherReducer/types';
 
-export const changeWeatherAction = (weather: any[]) => {
-   return { type: WeatherActionsConstants.CHANGE_WEATHER, payload: { weather } }
+export const changeWeatherAction = (weather: any[], api: string) => {
+   return { type: WeatherActionsConstants.CHANGE_WEATHER, payload: { weather, api } }
+}
+
+export const changeApiAction = (api: string) => {
+   return { type: WeatherActionsConstants.CHANGE_API, payload: { api } }
+}
+
+export const clearWeatherAction = () => {
+   return { type: WeatherActionsConstants.CLEAR_WEATHER }
 }

@@ -82,3 +82,12 @@ export const OtherDays = styled.div`
    justify-content: center;
    /* border: 1px solid beige; */
 `;
+
+export const Empty = styled.p`
+   max-width: 100%;
+   width: 100%;
+   text-align: center;
+   color: #fff;
+   opacity: 0.5;
+   font-size: 25px;
+`

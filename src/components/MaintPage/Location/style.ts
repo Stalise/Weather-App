@@ -1,12 +1,25 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-   max-width: 200px;
+   display: flex;
+   flex-direction: column;
+   max-width: 250px;
    width: 100%;
 `;
 
-export const InputCity = styled.input`
+export const Search = styled.div`
    max-width: 100%;
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   /* border: 1px solid blue; */
+`
+
+export const Field = styled.div`
+`
+
+export const InputCity = styled.input`
+   max-width: 200px;
    width: 100%;
    background-color: transparent;
    border-bottom: 2px solid #fff;
@@ -35,12 +48,30 @@ export const NotFound = styled.p`
 `;
 
 export const FoundButton = styled.button`
-   max-width: 100%;
+   max-width: 37px;
    width: 100%;
-   padding: 5px 10px;
+   height: 37px;
    background-color: gray;
    font-size: 20px;
    color: #fff;
    border-radius: 5px;
    margin-bottom: 20px;
+   position: relative;
+
+   &:hover:before {
+      opacity: 1;
+   }
+
+   &:before {
+      content: '';
+      display: block;
+      width: 23px;
+      height: 23px;
+      position: absolute;
+      top: 6.5px;
+      left: 7px;
+      opacity: 0.7;
+      transition: 0.3s;
+      background: url('./images/loop.png');
+   }
 `;
