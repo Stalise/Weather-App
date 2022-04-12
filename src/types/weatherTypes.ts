@@ -17,6 +17,7 @@ export interface IRequestWeatherBit {
 }
 
 export interface IWeatherDaily {
+   day: string,
    temp: number,
    icon: string
 }

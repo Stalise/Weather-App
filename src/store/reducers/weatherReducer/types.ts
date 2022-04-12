@@ -2,6 +2,7 @@ import { IWeatherDaily } from '../../../types/weatherTypes';
 
 export interface IState {
    currentApi: string,
+   currentDegrees: string,
    dataOpenWeather: IWeatherDaily[],
    dataWeatherBit: IWeatherDaily[],
 }
@@ -13,6 +14,7 @@ export enum WeatherActionsConstants {
    CHANGE_WEATHER = "CHANGE_WEATHER",
    CHANGE_API = "CHANGE_API",
    CLEAR_WEATHER = "CLEAR_WEATHER",
+   CHANGE_DEGREES = "CHANGE_DEGREES",
 }
 
 //! типизация payload
@@ -23,6 +25,10 @@ interface IChangeWeatherPayload {
 
 interface IChangeApiPayload {
    api: string,
+}
+
+interface IChangeDegreesPayload {
+   degrees: string,
 }
 
 //! типы для экшенов
@@ -40,8 +46,14 @@ interface IClearWeatherAction {
    type: WeatherActionsConstants.CLEAR_WEATHER
 }
 
+interface IChangeDegreesAction {
+   type: WeatherActionsConstants.CHANGE_DEGREES,
+   payload: IChangeDegreesPayload,
+}
+
 //! все типы в одном type, чтобы легче экспортировать
 export type WeatherActionsTypes =
    IChangeWeatherAction |
    IChangeApiAction |
-   IClearWeatherAction
+   IClearWeatherAction |
+   IChangeDegreesAction

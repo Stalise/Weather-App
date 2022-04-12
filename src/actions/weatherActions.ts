@@ -11,3 +11,7 @@ export const changeApiAction = (api: string) => {
 export const clearWeatherAction = () => {
    return { type: WeatherActionsConstants.CLEAR_WEATHER }
 }
+
+export const changeDegreesAction = (degrees: string) => {
+   return { type: WeatherActionsConstants.CHANGE_DEGREES, payload: { degrees } }
+}

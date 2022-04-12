@@ -87,6 +87,8 @@
       "react/jsx-wrap-multilines": "off",
       "react/jsx-curly-newline": "off",
       "no-trailing-spaces": "off",
+      "no-return-assign": "off",
+      "no-param-reassign": "off",
       "react/jsx-filename-extension": [
          2,
          {

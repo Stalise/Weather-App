@@ -1,4 +1,5 @@
 import { IWeatherDaily } from '../types/weatherTypes';
+import { convertCelsius } from './changeDegreesHelper';
 
 const typesWeatherBit = {
    sunny: ["Clear sky", "Mist", "Smoke", "Haze", "Sand/dust", "Fog", "Freezing Fog"],
@@ -8,7 +9,7 @@ const typesWeatherBit = {
    snowy: ["Light snow", "Snow", "Heavy Snow", "Mix snow/rain", "Sleet", "Heavy sleet", "Snow shower", "Heavy snow shower", "Flurries"],
 }
 
-export const transformOpenWeather = (daily: any[]) => {
+export const transformOpenWeather = (daily: any[], currentDegrees: string) => {
 
    let todayWeather = daily[0].weather[0].description
 
@@ -33,11 +34,11 @@ export const transformOpenWeather = (daily: any[]) => {
          break
    }
 
-   const getWeekDay = (dt: number) => {
+   const getWeekDay = (dt: number): string => {
       return new Date(dt * 1000).toLocaleString('en', { weekday: 'short' });
    }
 
-   const newDaily: IWeatherDaily[] = daily.map((elem) => {
+   let newDaily: IWeatherDaily[] = daily.map((elem) => {
       return (
          {
             temp: Math.round(elem.temp.day),
@@ -47,11 +48,15 @@ export const transformOpenWeather = (daily: any[]) => {
       )
    })
 
+   if (currentDegrees === '°F') {
+      newDaily = convertCelsius(newDaily)
+   }
+
    return { newDaily, todayWeather }
 
 }
 
-export const transformWeatherBit = (daily: any[]) => {
+export const transformWeatherBit = (daily: any[], currentDegrees: string) => {
 
    let todayWeather = daily[0].weather.description
 
@@ -76,11 +81,11 @@ export const transformWeatherBit = (daily: any[]) => {
          break
    }
 
-   const getWeekDay = (datetime: string) => {
+   const getWeekDay = (datetime: string): string => {
       return new Date(datetime).toLocaleString('en', { weekday: 'short' });
    }
 
-   const newDaily: IWeatherDaily[] = daily.map((elem) => {
+   let newDaily: IWeatherDaily[] = daily.map((elem) => {
       return (
          {
             temp: Math.round(elem.temp),
@@ -89,6 +94,10 @@ export const transformWeatherBit = (daily: any[]) => {
          }
       )
    })
+
+   if (currentDegrees === '°F') {
+      newDaily = convertCelsius(newDaily)
+   }
 
    return { newDaily, todayWeather }
 

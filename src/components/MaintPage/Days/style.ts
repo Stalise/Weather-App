@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
    border-bottom-right-radius: 5px;
    border-bottom-left-radius: 5px;
    display: flex;
+   position: relative;
 
    @media (max-width: 930px) {
       flex-direction: column;
@@ -82,6 +83,23 @@ export const OtherDays = styled.div`
    justify-content: center;
    /* border: 1px solid beige; */
 `;
+
+export const Degress = styled.button`
+   padding: 3px;
+   position: absolute;
+   top: 7px;
+   left: 7px;
+   background-color: gray;
+   color: #fff;
+   font-size: 18px;
+   border-radius: 3px;
+   opacity: 0.7;
+   transition-duration: 0.3s;
+
+   &:hover {
+      opacity: 1;
+   }
+`
 
 export const Empty = styled.p`
    max-width: 100%;

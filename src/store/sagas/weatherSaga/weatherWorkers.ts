@@ -9,6 +9,7 @@ import { currentTimeHelper } from '../../../helpers/currentTimeHelper';
 import { weatherRequests } from '../../../api/api';
 
 export function* workerWeatherBitApi() {
+   const { currentDegrees } = yield select((store) => store.weather);
    const { lat, lon, timezone } = yield select((store) => store.coordinates);
 
    const request: IRequestWeatherBit | string = yield call(weatherRequests.getWeatherBit, [lat, lon])
@@ -18,7 +19,7 @@ export function* workerWeatherBitApi() {
          yield put(changeTimezoneAction(request.timezone))
       }
 
-      const newWeather = transformWeatherBit(request.data)
+      const newWeather = transformWeatherBit(request.data, currentDegrees)
 
       yield put(changeThemeAction(newWeather.todayWeather))
 
@@ -27,6 +28,7 @@ export function* workerWeatherBitApi() {
 }
 
 export function* workerOpenWeatherApi() {
+   const { currentDegrees } = yield select((store) => store.weather);
    const { lat, lon, timezone } = yield select((store) => store.coordinates);
 
    const request: IRequestOpenWeather | string = yield call(weatherRequests.getOpenWeather, [lat, lon])
@@ -37,7 +39,7 @@ export function* workerOpenWeatherApi() {
          yield put(changeTimezoneAction(request.timezone))
       }
 
-      const newWeather = transformOpenWeather(request.daily)
+      const newWeather = transformOpenWeather(request.daily, currentDegrees)
 
       yield put(changeThemeAction(newWeather.todayWeather))
 
@@ -77,5 +79,6 @@ export function* workerCoordinatesGeograph(data: { type: string, payload: { lat:
       yield data.payload.usePersistPause()
    } else {
       yield put(errorCoordinatesAction(request))
+      yield data.payload.usePersistPause()
    }
 }

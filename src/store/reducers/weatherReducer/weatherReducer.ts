@@ -3,6 +3,7 @@ import { IState, WeatherActionsConstants, WeatherActionsTypes } from './types';
 
 const initialStore: IState = {
    currentApi: 'OpenWeatherApi',
+   currentDegrees: '°C',
    dataOpenWeather: [],
    dataWeatherBit: [],
 };
@@ -24,6 +25,11 @@ export const weatherReducer = (state = initialStore, action: WeatherActionsTypes
             ...state,
             dataOpenWeather: [],
             dataWeatherBit: [],
+         };
+      case WeatherActionsConstants.CHANGE_DEGREES:
+         return {
+            ...state,
+            currentDegrees: action.payload.degrees,
          };
       default:
          return state;
