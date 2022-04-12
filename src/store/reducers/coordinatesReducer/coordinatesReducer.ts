@@ -16,8 +16,11 @@ export const coordinatesReducer = (state = initialStore, action: CoordinatesActi
       case CoordinatesConstants.CHANGE_COORDINATES:
          return {
             ...state,
-            ...action.payload.coordinates,
+            lat: action.payload.coordinates.lat,
+            lon: action.payload.coordinates.lon,
+            country: action.payload.coordinates.country,
             city: action.payload.coordinates.name,
+            timeInitialIp: action.payload.coordinates.timeInitialIp,
             timezone: '',
             isError: '',
          };

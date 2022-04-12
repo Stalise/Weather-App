@@ -1,15 +1,14 @@
-import { call, takeEvery, put, select } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 
-import { changeCoordinatesAction, errorCoordinatesAction, changeTimezoneAction } from '../../actions/coordinatesAction';
-import { ICoordinatesRequest, IRequestOpenWeather, IRequestWeatherBit } from '../../types/weatherTypes';
-import { transformOpenWeather, transformWeatherBit } from '../../helpers/transformWeatherData';
-import { changeWeatherAction, clearWeatherAction } from '../../actions/weatherActions';
-import { changeThemeAction } from '../../actions/themeActions';
-import { currentTimeHelper } from '../../helpers/currentTimeHelper';
-import { sagasConstants } from "../../constants/saga";
-import { weatherRequests } from '../../api/api';
+import { changeCoordinatesAction, errorCoordinatesAction, changeTimezoneAction } from '../../../actions/coordinatesAction';
+import { ICoordinatesRequest, IRequestOpenWeather, IRequestWeatherBit } from '../../../types/weatherTypes';
+import { transformOpenWeather, transformWeatherBit } from '../../../helpers/transformWeatherData';
+import { changeWeatherAction, clearWeatherAction, changeApiAction } from '../../../actions/weatherActions';
+import { changeThemeAction } from '../../../actions/themeActions';
+import { currentTimeHelper } from '../../../helpers/currentTimeHelper';
+import { weatherRequests } from '../../../api/api';
 
-function* workerWeatherBitApi() {
+export function* workerWeatherBitApi() {
    const { lat, lon, timezone } = yield select((store) => store.coordinates);
 
    const request: IRequestWeatherBit | string = yield call(weatherRequests.getWeatherBit, [lat, lon])
@@ -27,7 +26,7 @@ function* workerWeatherBitApi() {
    }
 }
 
-function* workerOpenWeatherApi() {
+export function* workerOpenWeatherApi() {
    const { lat, lon, timezone } = yield select((store) => store.coordinates);
 
    const request: IRequestOpenWeather | string = yield call(weatherRequests.getOpenWeather, [lat, lon])
@@ -46,7 +45,7 @@ function* workerOpenWeatherApi() {
    }
 }
 
-function* workerCoordinatesCity(data: { type: string, city: string }) {
+export function* workerCoordinatesCity(data: { type: string, city: string }) {
    const request: ICoordinatesRequest | string = yield call(weatherRequests.getCoordinatesCity, data.city)
 
    if (typeof request !== 'string') {
@@ -58,11 +57,11 @@ function* workerCoordinatesCity(data: { type: string, city: string }) {
    }
 }
 
-function* workerCoordinatesGeograph(data: { type: string, payload: { lat: string, lon: string, usePersistPause: () => void } }) {
+export function* workerCoordinatesGeograph(data: { type: string, payload: { lat: string, lon: string, usePersistPause: () => void } }) {
 
    const { timeInitialIp } = yield select((store) => store.coordinates);
 
-   if (currentTimeHelper() - timeInitialIp < 3600000) {
+   if (currentTimeHelper() - timeInitialIp < 360000) {
       data.payload.usePersistPause()
       return
    }
@@ -72,26 +71,11 @@ function* workerCoordinatesGeograph(data: { type: string, payload: { lat: string
    if (typeof request !== 'string') {
       request.timeInitialIp = currentTimeHelper()
 
-      yield put(clearWeatherAction())
+      yield put(changeApiAction('OpenWeatherApi'))
       yield put(changeCoordinatesAction(request))
-      data.payload.usePersistPause()
+      yield call(workerWeatherBitApi)
+      yield data.payload.usePersistPause()
    } else {
       yield put(errorCoordinatesAction(request))
    }
-}
-
-export function* watcherCoordinatesCity() {
-   yield takeEvery(sagasConstants.SAGA_CHANGE_COORDINATES_CITY, workerCoordinatesCity)
-}
-
-export function* watcherCoordinatesGeograph() {
-   yield takeEvery(sagasConstants.SAGA_CHANGE_COORDINATES_GEOGRAPH, workerCoordinatesGeograph)
-}
-
-export function* watcherOpenWeatherApi() {
-   yield takeEvery(sagasConstants.SAGA_OPEN_WEATHER_API, workerOpenWeatherApi)
-}
-
-export function* watcherWeatherBitApi() {
-   yield takeEvery(sagasConstants.SAGA_WEATHER_BIT_API, workerWeatherBitApi)
 }

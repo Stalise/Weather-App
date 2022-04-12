@@ -19,7 +19,7 @@ const Days: FC = () => {
    useEffect(() => {
       const currentData = currentApi === 'OpenWeatherApi' ? dataOpenWeather : dataWeatherBit
 
-      if (currentData.length === 0 && city.length > 0) {
+      if (currentData.length === 0 && city !== '') {
          if (currentApi === 'OpenWeatherApi') {
             dispatch({ type: sagasConstants.SAGA_OPEN_WEATHER_API })
          } else if (currentApi === 'WeatherBitApi') {

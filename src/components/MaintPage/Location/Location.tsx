@@ -13,7 +13,7 @@ const Location: FC = () => {
    const [inputCity, setInputCity] = useState('')
 
    const getWeather = async () => {
-      if (inputCity === city && city.length > 0) return
+      if (inputCity === city && city !== '') return
 
       dispatch({
          type: sagasConstants.SAGA_CHANGE_COORDINATES_CITY,

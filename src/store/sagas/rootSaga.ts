@@ -1,5 +1,5 @@
 import { call, spawn, all } from "redux-saga/effects";
-import { watcherCoordinatesCity, watcherCoordinatesGeograph, watcherOpenWeatherApi, watcherWeatherBitApi } from './weatherSaga';
+import { watcherCoordinatesCity, watcherCoordinatesGeograph, watcherOpenWeatherApi, watcherWeatherBitApi } from './weatherSaga/weatherWatchers';
 
 export default function* rootSaga(): any {
 

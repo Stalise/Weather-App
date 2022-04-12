@@ -11,7 +11,7 @@ const Time: FC = () => {
 
    return (
       <Wrapper>
-         {timezone.length
+         {timezone !== ''
             ?
             <>
                <Clock>
