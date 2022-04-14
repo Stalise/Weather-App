@@ -5,8 +5,8 @@ const typesWeatherBit = {
    sunny: ["Clear sky", "Mist", "Smoke", "Haze", "Sand/dust", "Fog", "Freezing Fog"],
    cloudy: ["Few clouds", "Scattered clouds", "Broken clouds"],
    overcast: ["Overcast clouds", "Thunderstorm with light drizzle", "Thunderstorm with drizzle", "Thunderstorm with heavy drizzle", "Thunderstorm with Hail"],
-   rainy: ["Thunderstorm with light rain", "Thunderstorm with rain", "Thunderstorm with heavy rain", "Light Drizzle", "Drizzle", "Heavy Drizzle", "Light Rain", "Moderate Rain", "Heavy Rain", "Freezing rain", "Light shower rain", "Shower rain", "Heavy shower rain"],
-   snowy: ["Light snow", "Snow", "Heavy Snow", "Mix snow/rain", "Sleet", "Heavy sleet", "Snow shower", "Heavy snow shower", "Flurries"],
+   rainy: ["Thunderstorm with light rain", "Thunderstorm with rain", "Thunderstorm with heavy rain", "Light Drizzle", "Drizzle", "Heavy Drizzle", "Light Rain", "Heavy Rain", "Freezing rain", "Light shower rain", "Shower rain", "Heavy shower rain", "Moderate rain"],
+   snowy: ["Light snow", "Snow", "Heavy Snow", "Mix snow/rain", "Sleet", "Heavy sleet", "Snow shower", "Heavy snow shower", "Flurries", "Mix snow\/rain"],
 }
 
 export const transformOpenWeather = (daily: any[], currentDegrees: string) => {

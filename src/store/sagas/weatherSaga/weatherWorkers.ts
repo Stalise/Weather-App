@@ -3,7 +3,7 @@ import { call, put, select } from "redux-saga/effects";
 import { changeCoordinatesAction, errorCoordinatesAction, changeTimezoneAction } from '../../../actions/coordinatesAction';
 import { ICoordinatesRequest, IRequestOpenWeather, IRequestWeatherBit } from '../../../types/weatherTypes';
 import { transformOpenWeather, transformWeatherBit } from '../../../helpers/transformWeatherData';
-import { changeWeatherAction, clearWeatherAction, changeApiAction } from '../../../actions/weatherActions';
+import { changeWeatherAction, clearWeatherAction, changeApiAction, changeLoadWeatherAction } from '../../../actions/weatherActions';
 import { changeThemeAction } from '../../../actions/themeActions';
 import { currentTimeHelper } from '../../../helpers/currentTimeHelper';
 import { weatherRequests } from '../../../api/api';
@@ -12,7 +12,10 @@ export function* workerWeatherBitApi() {
    const { currentDegrees } = yield select((store) => store.weather);
    const { lat, lon, timezone } = yield select((store) => store.coordinates);
 
+   yield put(changeLoadWeatherAction(true))
+
    const request: IRequestWeatherBit | string = yield call(weatherRequests.getWeatherBit, [lat, lon])
+
    if (typeof request !== 'string') {
 
       if (timezone === '') {
@@ -25,11 +28,15 @@ export function* workerWeatherBitApi() {
 
       yield put(changeWeatherAction(newWeather.newDaily, 'dataWeatherBit'))
    }
+
+   yield put(changeLoadWeatherAction(false))
 }
 
 export function* workerOpenWeatherApi() {
    const { currentDegrees } = yield select((store) => store.weather);
    const { lat, lon, timezone } = yield select((store) => store.coordinates);
+
+   yield put(changeLoadWeatherAction(true))
 
    const request: IRequestOpenWeather | string = yield call(weatherRequests.getOpenWeather, [lat, lon])
 
@@ -45,6 +52,8 @@ export function* workerOpenWeatherApi() {
 
       yield put(changeWeatherAction(newWeather.newDaily, 'dataOpenWeather'))
    }
+
+   yield put(changeLoadWeatherAction(false))
 }
 
 export function* workerCoordinatesCity(data: { type: string, city: string }) {
@@ -63,7 +72,7 @@ export function* workerCoordinatesGeograph(data: { type: string, payload: { lat:
 
    const { timeInitialIp } = yield select((store) => store.coordinates);
 
-   if (currentTimeHelper() - timeInitialIp < 360000) {
+   if (currentTimeHelper() - timeInitialIp < 3600000) {
       data.payload.usePersistPause()
       return
    }

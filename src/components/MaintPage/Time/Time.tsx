@@ -11,17 +11,10 @@ const Time: FC = () => {
 
    return (
       <Wrapper>
-         {timezone !== ''
-            ?
-            <>
-               <Clock>
-                  <Moment format="HH:mm" interval={1000} tz={timezone} />
-               </Clock>
-               <Date><Moment format="dddd, D MMMM YYYY" tz={timezone} /></Date>
-            </>
-            :
-            null
-         }
+         <Clock>
+            <Moment format="HH:mm" interval={1000} tz={timezone} />
+         </Clock>
+         <Date><Moment format="dddd, D MMMM YYYY" tz={timezone} /></Date>
       </Wrapper>
    )
 };

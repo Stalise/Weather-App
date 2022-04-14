@@ -15,3 +15,7 @@ export const clearWeatherAction = () => {
 export const changeDegreesAction = (degrees: string) => {
    return { type: WeatherActionsConstants.CHANGE_DEGREES, payload: { degrees } }
 }
+
+export const changeLoadWeatherAction = (loading: boolean) => {
+   return { type: WeatherActionsConstants.CHANGE_LOADING_WEATHER, payload: { loading } }
+}

@@ -6,6 +6,7 @@ const initialStore: IState = {
    currentDegrees: '°C',
    dataOpenWeather: [],
    dataWeatherBit: [],
+   isLoading: false,
 };
 
 export const weatherReducer = (state = initialStore, action: WeatherActionsTypes) => {
@@ -30,6 +31,11 @@ export const weatherReducer = (state = initialStore, action: WeatherActionsTypes
          return {
             ...state,
             currentDegrees: action.payload.degrees,
+         };
+      case WeatherActionsConstants.CHANGE_LOADING_WEATHER:
+         return {
+            ...state,
+            isLoading: action.payload.loading,
          };
       default:
          return state;

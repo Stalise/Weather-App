@@ -3,7 +3,7 @@ import { IState, CoordinatesConstants, CoordinatesActionsTypes } from './types';
 const initialStore: IState = {
    city: '',
    country: '',
-   timezone: '',
+   timezone: 'Europe/Minsk',
    timeInitialIp: 0,
    lat: 0,
    lon: 0,

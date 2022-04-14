@@ -89,6 +89,9 @@
       "no-trailing-spaces": "off",
       "no-return-assign": "off",
       "no-param-reassign": "off",
+      "no-restricted-syntax": "off",
+      "no-await-in-loop": "off",
+      "no-useless-escape": "off",
       "react/jsx-filename-extension": [
          2,
          {

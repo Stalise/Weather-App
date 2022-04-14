@@ -21,9 +21,23 @@ const Location: FC = () => {
       })
    }
 
+   const pressEnter = ({ key }: { key: string }) => {
+      if (key === 'Enter') {
+         getWeather()
+      }
+   }
+
    useEffect(() => {
       setInputCity(city)
    }, [city])
+
+   useEffect(() => {
+      document.addEventListener('keydown', pressEnter)
+
+      return () => {
+         document.removeEventListener('keydown', pressEnter)
+      }
+   }, [inputCity])
 
    return (
       <Wrapper>

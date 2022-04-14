@@ -5,6 +5,7 @@ export interface IState {
    currentDegrees: string,
    dataOpenWeather: IWeatherDaily[],
    dataWeatherBit: IWeatherDaily[],
+   isLoading: boolean,
 }
 
 /*----------------------------------------------*/
@@ -15,6 +16,7 @@ export enum WeatherActionsConstants {
    CHANGE_API = "CHANGE_API",
    CLEAR_WEATHER = "CLEAR_WEATHER",
    CHANGE_DEGREES = "CHANGE_DEGREES",
+   CHANGE_LOADING_WEATHER = "CHANGE_LOADING_WEATHER",
 }
 
 //! типизация payload
@@ -29,6 +31,10 @@ interface IChangeApiPayload {
 
 interface IChangeDegreesPayload {
    degrees: string,
+}
+
+interface IChangeLoadingWeatherPayload {
+   loading: boolean,
 }
 
 //! типы для экшенов
@@ -51,9 +57,15 @@ interface IChangeDegreesAction {
    payload: IChangeDegreesPayload,
 }
 
+interface IChangeLoadingWeatherAction {
+   type: WeatherActionsConstants.CHANGE_LOADING_WEATHER,
+   payload: IChangeLoadingWeatherPayload,
+}
+
 //! все типы в одном type, чтобы легче экспортировать
 export type WeatherActionsTypes =
    IChangeWeatherAction |
    IChangeApiAction |
    IClearWeatherAction |
-   IChangeDegreesAction
+   IChangeDegreesAction |
+   IChangeLoadingWeatherAction

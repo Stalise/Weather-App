@@ -3,16 +3,27 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
    max-width: 100%;
    width: 100%;
+   min-height: 200px;
    padding: 40px 35px;
    background-color: rgba(0, 0, 0, 0.75);
    border-bottom-right-radius: 5px;
    border-bottom-left-radius: 5px;
    display: flex;
    position: relative;
+   transition: height 0.3s;
 
    @media (max-width: 930px) {
       flex-direction: column;
       align-items: center;
+      min-height: 330px;
+   }
+
+   @media (max-width: 725px) {
+      min-height: 470px;
+   }
+
+   @media (max-width: 394px) {
+      min-height: 610px;
    }
 `;
 
@@ -89,15 +100,21 @@ export const Degress = styled.button`
    position: absolute;
    top: 7px;
    left: 7px;
-   background-color: gray;
+   background-color: #454444;
    color: #fff;
    font-size: 18px;
    border-radius: 3px;
-   opacity: 0.7;
    transition-duration: 0.3s;
 
    &:hover {
-      opacity: 1;
+      background-color: #545353;
+   }
+`
+export const DegressValue = styled.span`
+   color: #a6a6a6;
+
+   &._active {
+      color: #fff;
    }
 `
 
