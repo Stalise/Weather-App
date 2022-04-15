@@ -1,0 +1,24 @@
+.input-mask {
+   max-width: 340px;
+   width: 100%;
+   height: 50px;
+   font-size: 18px;
+   padding: 4px 0 0 10px;
+   background-color: #f8f8f8;
+   border: 2px solid transparent;
+   transition: border 0.3s;
+}
+
+.input-mask::placeholder {
+   color: #121212;
+   opacity: 0.4;
+}
+
+.input-mask:hover {
+   border: 2px solid gray;
+}
+
+.input-mask:focus {
+   border: 2px solid black;
+   font-size: 18px;
+}

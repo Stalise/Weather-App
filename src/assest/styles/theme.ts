@@ -94,7 +94,7 @@ export const myThemes: IState = {
          url('./images/cloudy_blur.jpg') 0 0/100% 100% no-repeat,
          url('./images/rainy_blur.jpg') 0 0/100% 100% no-repeat,
          url('./images/snowy_blur.jpg') 0 0/100% 100% no-repeat,
-         url('./images/overcast_blur.jpg') 0 0/100% 100% no-repeats
+         url('./images/overcast_blur.jpg') 0 0/100% 100% no-repeat
       `,
       containerBackground: `
          url('./images/sunny.jpg') 0 0/cover no-repeat,

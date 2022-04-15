@@ -5,7 +5,7 @@ import { v1 as uuidv1 } from 'uuid';
 import { Wrapper, Today, TodayImgContainer, TodayImg, TodayContent, TodayTitle, TodayDegrees, OtherDays, Empty, Degress, DegressValue } from './style';
 import Day from "../Day/Day";
 import Loader from "../../Common/Spinner/Spinner";
-import { changeDegreesHelper } from '../../../helpers/changeDegreesHelper';
+import { changeDegreesHelper } from '../../../utils/changeDegreesHelper';
 import { useTypedSelector } from "../../../hooks/useTypedSelector";
 import { IWeatherDaily } from '../../../types/weatherTypes';
 import { sagasConstants } from '../../../constants/saga';

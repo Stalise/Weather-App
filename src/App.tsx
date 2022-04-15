@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useTypedSelector } from './hooks/useTypedSelector';
 import MainPage from './pages/MainPage/MainPage';
 import { myThemes } from './assest/styles/theme';
-import { getPositionIp } from './helpers/getPositionIp';
+import { getPositionIp } from './utils/getPositionIp';
 
 const App: FC = () => {
 

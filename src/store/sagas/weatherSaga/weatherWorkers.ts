@@ -2,10 +2,10 @@ import { call, put, select } from "redux-saga/effects";
 
 import { changeCoordinatesAction, errorCoordinatesAction, changeTimezoneAction } from '../../../actions/coordinatesAction';
 import { ICoordinatesRequest, IRequestOpenWeather, IRequestWeatherBit } from '../../../types/weatherTypes';
-import { transformOpenWeather, transformWeatherBit } from '../../../helpers/transformWeatherData';
+import { transformOpenWeather, transformWeatherBit } from '../../../utils/transformWeatherData';
 import { changeWeatherAction, clearWeatherAction, changeApiAction, changeLoadWeatherAction } from '../../../actions/weatherActions';
 import { changeThemeAction } from '../../../actions/themeActions';
-import { currentTimeHelper } from '../../../helpers/currentTimeHelper';
+import { currentTimeHelper } from '../../../utils/currentTimeHelper';
 import { weatherRequests } from '../../../api/api';
 
 export function* workerWeatherBitApi() {
@@ -85,9 +85,11 @@ export function* workerCoordinatesGeograph(data: { type: string, payload: { lat:
       yield put(changeApiAction('OpenWeatherApi'))
       yield put(changeCoordinatesAction(request))
       yield call(workerWeatherBitApi)
+      yield put(changeLoadWeatherAction(false))
       yield data.payload.usePersistPause()
    } else {
       yield put(errorCoordinatesAction(request))
+      yield put(changeLoadWeatherAction(false))
       yield data.payload.usePersistPause()
    }
 }
