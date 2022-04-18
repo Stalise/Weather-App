@@ -10,7 +10,8 @@ export const Wrapper = styled.div`
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   background: url('./images/sunny_blur.jpg') 0 0/100% 100% no-repeat;
+   background: ${(props) => props.theme.wrapperBackground};
+   transition: background 0.3s;
 
    @media (max-width: 680px) {
       padding: 0;
@@ -22,7 +23,8 @@ export const Container = styled.div`
    width: 100%;
    border-radius: 5px;
    box-shadow: 0px 0px 21px 0px rgba(0, 0, 0, 0.2);
-   background: url('./images/sunny.jpg') 0 0/cover no-repeat;
+   background: ${(props) => props.theme.containerBackground};
+   transition: background 0.3s;
 `;
 
 export const Content = styled.div`
@@ -54,9 +56,9 @@ export const RightContainer = styled.div`
    display: flex;
    flex-direction: column;
    align-items: flex-end;
+   /* border: 1px solid red; */
 
    @media (max-width: 680px) {
-      border: 1px solid red;
       width: 100%;
       display: flex;
       align-items: center;

@@ -10,9 +10,9 @@ const Day: FC<IProps> = ({ data }) => {
 
    return (
       <Wrapper>
-         <Title>Mon</Title>
+         <Title>{data.day}</Title>
          <ImgContainer>
-            <Img src={`http://openweathermap.org/img/w/${data.icon}.png`} />
+            <Img src={data.icon} />
          </ImgContainer>
          <Degrees>{`${data.temp}°`}</Degrees>
       </Wrapper>

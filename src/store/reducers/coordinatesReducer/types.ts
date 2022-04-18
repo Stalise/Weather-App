@@ -3,6 +3,8 @@ import { ICoordinatesRequest } from '../../../types/weatherTypes';
 export interface IState {
    city: string,
    country: string,
+   timezone: string,
+   timeInitialIp: number,
    lat: number,
    lon: number,
    isError: string,
@@ -15,6 +17,8 @@ export interface IState {
 export enum CoordinatesConstants {
    CHANGE_COORDINATES = "CHANGE_COORDINATES",
    ADD_ERROR_COORDINATES = "ADD_ERROR_COORDINATES",
+   CHANGE_TIMEZONE_COORDINATES = "CHANGE_TIMEZONE_COORDINATES",
+   CLEAR_COORDINATES = "CLEAR_COORDINATES",
 }
 
 //! типизация payload
@@ -24,6 +28,10 @@ interface IChangeCoordinatesPayload {
 
 interface IErrorCoordinatesPayload {
    error: string,
+}
+
+interface IChangeTimezonePayload {
+   timezone: string,
 }
 
 //! типы для экшенов
@@ -37,7 +45,18 @@ interface IErrorCoordinatesAction {
    payload: IErrorCoordinatesPayload
 }
 
+interface IChangeTimezoneAction {
+   type: CoordinatesConstants.CHANGE_TIMEZONE_COORDINATES,
+   payload: IChangeTimezonePayload
+}
+
+interface IClearCoordinatesAction {
+   type: CoordinatesConstants.CLEAR_COORDINATES,
+}
+
 //! все типы в одном type, чтобы легче экспортировать
 export type CoordinatesActionsTypes =
    IChangeCoordinatesAction |
-   IErrorCoordinatesAction
+   IErrorCoordinatesAction |
+   IChangeTimezoneAction |
+   IClearCoordinatesAction

@@ -46,7 +46,7 @@
       "max-len": [
          "warn",
          {
-            "code": 150,
+            "code": 170,
             "ignoreUrls": true,
             "ignorePattern": "import"
          }
@@ -84,6 +84,23 @@
       "@typescript-eslint/no-unused-vars": "warn",
       "array-callback-return": "off",
       "consistent-return": "off",
+      "react/jsx-wrap-multilines": "off",
+      "react/jsx-curly-newline": "off",
+      "no-trailing-spaces": "off",
+      "no-return-assign": "off",
+      "no-param-reassign": "off",
+      "no-restricted-syntax": "off",
+      "no-await-in-loop": "off",
+      "no-useless-escape": "off",
+      "no-sequences": "off",
+      "react/jsx-no-constructed-context-values": "off",
+      "no-shadow": "off",
+      "@typescript-eslint/no-shadow": "off",
+      "jsx-quotes": "off",
+      "react/jsx-props-no-spreading": "off",
+      "react/jsx-tag-spacing": "off",
+      "react/self-closing-comp": "off",
+      "react/jsx-no-useless-fragment": "off",
       "react/jsx-filename-extension": [
          2,
          {

@@ -1,11 +1,23 @@
 export interface ICoordinatesRequest {
+   name: string
    country: string,
    lat: number,
    lon: number,
-   name: string
+   timeInitialIp?: number,
 }
 
-export interface IWeatherRequest {
+export interface IRequestOpenWeather {
    daily: any[],
    timezone: string
+}
+
+export interface IRequestWeatherBit {
+   data: any[],
+   timezone: string
+}
+
+export interface IWeatherDaily {
+   day: string,
+   temp: number,
+   icon: string
 }
