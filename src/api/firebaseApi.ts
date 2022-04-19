@@ -1,5 +1,5 @@
 import firebase from 'firebase/compat/app';
-import { doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { v1 as uuidv1 } from 'uuid';
 
 export const firebaseRequests = {
@@ -50,13 +50,11 @@ export const firebaseRequests = {
 
       if (userInfo.todos.length > 0) {
          let currentTime: any = firebase.firestore.Timestamp.now()
-         currentTime = new Date(currentTime * 1000).toLocaleString('en', { month: 'long', day: 'numeric', minute: 'numeric', hour: 'numeric' })
-
-         console.log(currentTime)
+         currentTime = new Date(currentTime * 1000).toLocaleString('en', { month: 'long', day: 'numeric' })
 
          filteredTodos = userInfo.todos.filter((elem: any) => {
-            const createTimeTodo = new Date(elem.createTime.seconds * 1000).toLocaleString('en', { month: 'long', day: 'numeric', minute: 'numeric', hour: 'numeric' })
-            console.log(createTimeTodo)
+            const createTimeTodo = new Date(elem.createTime.seconds * 1000).toLocaleString('en', { month: 'long', day: 'numeric' })
+
             if (currentTime === createTimeTodo) {
                return elem
             }

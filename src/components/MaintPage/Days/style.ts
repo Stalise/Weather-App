@@ -44,11 +44,10 @@ export const TodayImgContainer = styled.div`
    width: 50%;
    height: 100%;
    padding: 0 7px;
-   /* border: 1px solid blue; */
 `;
 
 export const TodayImg = styled.img`
-   max-width: 100%;
+   width: 100%;
    height: 100%;
    object-fit: contain;
    transform: scale(1.3, 1.3);

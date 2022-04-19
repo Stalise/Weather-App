@@ -40,6 +40,7 @@ export const weatherRequests = {
    getOpenWeather: async (coordinates: number[]) => {
       try {
          const request = await instanceOpenWeather.get(`data/2.5/onecall?lat=${coordinates[0]}&lon=${coordinates[1]}&lang=ru&exclude=minutely,hourly,alerts&units=metric&appid=${openWeatherId}`)
+
          return request.data
       } catch (error) {
          return 'Something was wrong'
@@ -54,4 +55,4 @@ export const weatherRequests = {
          return 'Something was wrong'
       }
    },
-}
+};

@@ -28,7 +28,7 @@ export const ImgContainer = styled.div`
 `;
 
 export const Img = styled.img`
-   max-width: 100%;
+   width: 100%;
    height: 100%;
    object-fit: contain;
    transform: scale(1.5, 1.5);

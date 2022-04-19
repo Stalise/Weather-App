@@ -42,7 +42,7 @@ const Location: FC = () => {
    return (
       <Wrapper>
          <Search>
-            <FoundButton onClick={() => getWeather()} />
+            <FoundButton onClick={getWeather} aria-label='search button' />
             <Field>
                <InputCity
                   onChange={(e) => setInputCity(e.target.value)}

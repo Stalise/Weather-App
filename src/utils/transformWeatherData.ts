@@ -5,7 +5,7 @@ const typesWeatherBit = {
    sunny: ["Clear sky", "Mist", "Smoke", "Haze", "Sand/dust", "Fog", "Freezing Fog"],
    cloudy: ["Few clouds", "Scattered clouds", "Broken clouds"],
    overcast: ["Overcast clouds", "Thunderstorm with light drizzle", "Thunderstorm with drizzle", "Thunderstorm with heavy drizzle", "Thunderstorm with Hail"],
-   rainy: ["Thunderstorm with light rain", "Thunderstorm with rain", "Thunderstorm with heavy rain", "Light Drizzle", "Drizzle", "Heavy Drizzle", "Light Rain", "Heavy Rain", "Freezing rain", "Light shower rain", "Shower rain", "Heavy shower rain", "Moderate rain"],
+   rainy: ["Thunderstorm with light rain", "Thunderstorm with rain", "Thunderstorm with heavy rain", "Light Drizzle", "Drizzle", "Heavy Drizzle", "Light Rain", "Heavy rain", "Freezing rain", "Light shower rain", "Shower rain", "Heavy shower rain", "Moderate rain"],
    snowy: ["Light snow", "Snow", "Heavy Snow", "Mix snow/rain", "Sleet", "Heavy sleet", "Snow shower", "Heavy snow shower", "Flurries", "Mix snow\/rain"],
 }
 
@@ -23,14 +23,14 @@ export const transformOpenWeather = (daily: any[], currentDegrees: string) => {
       case ["пасмурно"].includes(todayWeather):
          todayWeather = "overcast"
          break
-      case ["небольшой дождь", "дождь", "сильный дождь"].includes(todayWeather):
+      case ["небольшой дождь", "дождь", "сильный дождь", "Heavy rain"].includes(todayWeather):
          todayWeather = "rainy"
          break
       case ["снег с дождём", "снег"].includes(todayWeather):
          todayWeather = "snowy"
          break
       default:
-         todayWeather = ""
+         todayWeather = ''
          break
    }
 
@@ -74,7 +74,7 @@ export const transformWeatherBit = (daily: any[], currentDegrees: string) => {
          todayWeather = "rainy"
          break
       case typesWeatherBit.snowy.includes(todayWeather):
-         todayWeather = "snow"
+         todayWeather = "snowy"
          break
       default:
          todayWeather = ""

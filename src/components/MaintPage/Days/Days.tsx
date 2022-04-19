@@ -38,7 +38,7 @@ const Days: FC = () => {
             <>
                <Today>
                   <TodayImgContainer>
-                     <TodayImg src={currentDays[0].icon} />
+                     <TodayImg src={currentDays[0].icon} alt='weather' />
                   </TodayImgContainer>
                   <TodayContent>
                      <TodayTitle>Today</TodayTitle>

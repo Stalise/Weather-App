@@ -41,7 +41,7 @@ export const Country = styled.p`
 export const NotFound = styled.p`
    max-width: 100%;
    color: #910101;
-   text-align: center;
+   text-align: right;
    font-size: 18px;
    margin: 7px 0;
    font-weight: 600;
