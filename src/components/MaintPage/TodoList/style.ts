@@ -5,27 +5,27 @@ export const Todos = styled.ul`
    width: 100%;
    display: flex;
    flex-direction: column;
+   overflow-y: auto;
+   max-height: 100px;
+
+   &::-webkit-scrollbar {
+      width: 8px;
+   }
+
+   &::-webkit-scrollbar-track {
+      background-color: #fffff0;
+   }
+   
+   &::-webkit-scrollbar-thumb {
+      background-color: lightgray;
+   }
 `;
 
 export const TodoItem = styled.li`
-   display: inline-flex;
+   display: flex;
    align-items: center;
-   cursor: pointer;
    &:not(:last-child) {
       margin-bottom: 10px;
-   }
-
-   &:hover p {
-      background-color: darkred;
-      color: transparent;
-      &:before {
-         content: '✖';
-         position: absolute;
-         top: 4px;
-         font-size: 18px;
-         left: 16px;
-         color: #fff;
-      }
    }
 `;
 
@@ -41,9 +41,24 @@ export const TodoTime = styled.p`
    text-align: center;
    transition: background-color 0.1s;
    position: relative;
+   cursor: pointer;
+
+   &:hover {
+      background-color: darkred;
+      color: transparent;
+      &:before {
+         content: '✖';
+         position: absolute;
+         top: 4px;
+         font-size: 18px;
+         left: 16px;
+         color: #fff;
+      }
+   }
 `;
 
 export const TodoTask = styled.span`
+   display: block;
    color: #fff;;
    font-size: 22px;
 `;

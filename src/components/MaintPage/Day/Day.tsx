@@ -12,7 +12,7 @@ const Day: FC<IProps> = ({ data }) => {
       <Wrapper>
          <Title>{data.day}</Title>
          <ImgContainer>
-            <Img src={data.icon} />
+            <Img src={data.icon} alt='weather' />
          </ImgContainer>
          <Degrees>{`${data.temp}°`}</Degrees>
       </Wrapper>

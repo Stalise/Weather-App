@@ -6,6 +6,7 @@ import 'firebase/compat/auth';
 import { firebaseSettings } from '../../constants/firebase';
 
 firebase.initializeApp(firebaseSettings)
+
 const authFirebase = firebase.auth()
 const firestore = firebase.firestore()
 

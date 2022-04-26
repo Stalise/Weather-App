@@ -14,6 +14,7 @@ const TodoList: FC<IProps> = ({ user }) => {
 
    const deleteTodo = async (id: string) => {
       let updateTodos = [...user[0].todos]
+
       updateTodos = updateTodos.filter((elem) => elem.todoId !== id)
 
       await updateDoc(doc(firestore, "users", user[0].userEmail), {
@@ -25,8 +26,8 @@ const TodoList: FC<IProps> = ({ user }) => {
       <Todos>
          {user[0]?.todos?.map((elem: any) => {
             return (
-               <TodoItem onClick={() => deleteTodo(elem.todoId)} key={elem.todoId}>
-                  <TodoTime >{elem.time}</TodoTime>
+               <TodoItem key={elem.todoId}>
+                  <TodoTime onClick={() => deleteTodo(elem.todoId)} >{elem.time}</TodoTime>
                   <TodoTask>{elem.text}</TodoTask>
                </TodoItem>
             )
